@@ -1,7 +1,8 @@
 // deno-lint-ignore-file no-explicit-any
 
-import { GuildMember } from "../GuildMember.ts"
+import { GuildMember } from "../Member.ts"
 import { MessageAuthor } from "../MessageAuthor.ts"
+import { User } from "../User.ts"
 
 export type MessageEvent = {
     type: number,
@@ -15,6 +16,7 @@ export type MessageEvent = {
     mentionEveryone: Array<any>,
     member: GuildMember,
     id: string,
+    user: User,
     flags: number,
     embeds: Array<any>,
     editedTimestamp?: string | null,
@@ -23,5 +25,7 @@ export type MessageEvent = {
     channelId: string,
     author: MessageAuthor,
     attachments: Array<any>,
-    guildId: string
+    guildId: string,
+    send: (message: string) => void,
+    reply: (message: string) => void,
 }
