@@ -1,4 +1,4 @@
-# denocord
+# denocord [![Deno](https://github.com/ItsRemix/denocord/actions/workflows/deno.yml/badge.svg)](https://github.com/ItsRemix/denocord/actions/workflows/deno.yml)
 
 ## Authors
 
