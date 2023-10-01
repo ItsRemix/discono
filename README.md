@@ -13,4 +13,4 @@ Import with deno from url
   import { Client } from "https://raw.githubusercontent.com/ItsRemix/denocord/main/lib/Client.ts"
 ```
 
-IDK IF IT WORKS 💀
+JSDOC INCOMING
