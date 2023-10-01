@@ -1,5 +1,4 @@
 // deno-lint-ignore-file no-explicit-any
-import "https://deno.land/std@0.181.0/dotenv/load.ts";
 import { EventEmitter } from "https://deno.land/x/eventemitter@1.2.4/mod.ts"
 import { ClientOptions } from "./types/ClientOptions.ts";
 import { ReadyEvent } from "./types/Events/ReadyEvent.ts";
