@@ -17,5 +17,5 @@ Module that allows to easily interact with Discord's API, with strong types
 Import with deno from url
 
 ```ts
-import Client from "https://deno.land/x/discono@v0.1.0-alpha/main.ts";
+import Client from "https://deno.land/x/discono/main.ts";
 ```
