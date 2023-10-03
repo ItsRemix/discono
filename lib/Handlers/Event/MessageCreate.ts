@@ -1,6 +1,12 @@
 // deno-lint-ignore-file no-explicit-any
 import Client from './../../Client.ts';
 
+/**
+ * MessageCreate event
+ * @param {any} data 
+ * @param {Client} client 
+ * @returns 
+ */
 export default function messageCreate(data: any, client: Client) {
     data["send"] = async (message: string, _embeds?: Array<any>) => {
         await fetch(`https://discord.com/api/v10/channels/${data.channelId}/messages`, {

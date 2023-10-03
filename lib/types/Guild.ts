@@ -1,4 +1,5 @@
 // deno-lint-ignore-file no-explicit-any
+import { Role } from "./Role.ts"
 
 export type Guild = {
     id: string,
@@ -19,7 +20,7 @@ export type Guild = {
     defaultMessageNotifications: number,
     explicitContentFilter: number,
     // TODO: Change any to Role type (https://discord.com/developers/docs/topics/permissions#role-object)
-    roles: Array<any>,
+    roles: Array<Role>,
     // TODO: Change any to Emoji type (https://discord.com/developers/docs/resources/emoji#emoji-object)
     emojis: Array<any>,
     // TODO: Change any to GuildFeature type (https://discord.com/developers/docs/resources/guild#guild-object-guild-features)

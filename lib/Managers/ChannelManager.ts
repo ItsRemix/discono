@@ -2,14 +2,26 @@
 import { Channel } from '../types/Channel.ts';
 import Client from './../Client.ts';
 
+/**
+ * Class for ChannelManager
+ */
 export default class ChannelManager {
     private client: Client
 
+    /**
+     * Create ChannelManager
+     * @param {Client} client 
+     */
     constructor(client: Client) {
         this.client = client
     }
 
-    async fetchChannel(id: string) {
+    /**
+     * Function for fetching channels
+     * @param {string} id ID of the channel
+     * @returns {Promise<Channel>} Fetched Channel
+     */
+    async fetchChannel(id: string): Promise<Channel> {
         const fetchData = await (await fetch(`https://discord.com/api/v10/channels/${id}`, {
             method: "GET",
             headers: {

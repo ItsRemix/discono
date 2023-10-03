@@ -12,7 +12,12 @@ import UserManager from './Managers/UserManager.ts';
 import { GuildMemberAdd, GuildMemberRemove } from "./types/Events/GuildMemberEvent.ts";
 import ChannelManager from './Managers/ChannelManager.ts';
 import GuildManager from './Managers/GuildManager.ts';
+import PermissionManager from "./Managers/PermissionManager.ts";
 
+/**
+ * Main class interacting with Discord API
+ * @extends {EventEmitter}
+ */
 export default class Client extends EventEmitter<{
             ready (data: ReadyEvent): any,
             message (data: MessageEvent): any,
@@ -29,7 +34,11 @@ export default class Client extends EventEmitter<{
     UserManager: UserManager
     ChannelManager: ChannelManager
     GuildManager: GuildManager
+    PermissionManager: PermissionManager
 
+    /**
+     * @param {ClientOptions} options Options of the client
+     */
     constructor(options?: ClientOptions) {
         super()
         if(options == null) this.options = Util.createDefaultOptions();
@@ -42,8 +51,15 @@ export default class Client extends EventEmitter<{
         this.UserManager = new UserManager(this)
         this.ChannelManager = new ChannelManager(this)
         this.GuildManager = new GuildManager(this)
+        this.PermissionManager = new PermissionManager()
     }
 
+    /**
+     * Description
+     * @param {Array<Activity>} activities Type of activity
+     * @param {string} status Status name
+     * @returns {void}
+     */
     setActivity(activities: Array<Activity>, status: string): void {
         if(!activities) throw new TypeError("No activities provided!")
         this.ws?.send(JSON.stringify({
@@ -57,7 +73,12 @@ export default class Client extends EventEmitter<{
         }))
     }
 
-    listenEvents(): void {
+    /**
+     * 
+     * @returns {void}
+     * @private
+     */
+    private listenEvents(): void {
         if(this.ws == null) return this.listenEvents();
 
         this.ws?.addEventListener("message", async (rawData) => {
@@ -97,7 +118,7 @@ export default class Client extends EventEmitter<{
                     console.log(data.t)
                     this.emitSync("debug", camelData)
                     if(data.op == 10) {
-                        this.heartbeat = setInterval(() => {
+                        if(this.ws?.readyState == this.ws?.OPEN) this.heartbeat = setInterval(() => {
                             this.ws?.send(JSON.stringify({
                                 "op": 1,
                                 "d": 251
