@@ -1,14 +1,26 @@
 import { User } from '../types/User.ts';
 import Client from './../Client.ts';
 
+/**
+ * Class for UserManager
+ */
 export default class UserManager {
     private client: Client
 
+    /**
+     * Create UserManager
+     * @param {Client} client 
+     */
     constructor(client: Client) {
         this.client = client
     }
 
-    async fetchUser(id: string) {
+    /**
+     * Function for fetching user
+     * @param {string} id
+     * @returns {Promise<User>}
+     */
+    async fetchUser(id: string): Promise<User> {
         const fetchData = await (await fetch(`https://discord.com/api/v10/users/${id}`, {
             method: "GET",
             headers: {
